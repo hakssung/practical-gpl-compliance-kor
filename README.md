@@ -2,7 +2,7 @@
 
 I summarize the contents of the following books and write them in Korean for personal study purposes. : https://www.linuxfoundation.org/publications/practical-gpl-compliance-download-this-free-guide-today/
 
-And the book, Practical GPL Compliance, is under the following license: 
+And the book, Practical GPL Compliance, has the following copyright information: 
 > Copyright © 2017 Linux Foundation
 > All rights reserved. This book or any portion thereof may not be reproduced or
 > used in any manner whatsoever without the express written permission of the
