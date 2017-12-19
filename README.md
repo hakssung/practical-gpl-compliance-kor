@@ -12,4 +12,5 @@ The book, Practical GPL Compliance, has the following copyright information:
 > First Edition, 2017
 
 The contents of this repository are under the CC-BA-SA-4.0.
+
 Copyright (c) 2017 Haksung Jang (hakssung@gmail.com) 
