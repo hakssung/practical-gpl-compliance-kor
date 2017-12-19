@@ -2,6 +2,7 @@
 * 이 책에서는 GPL-2.0에 초점을 맞춘다. 
 * 대부분의 compliance work은 시장에 보내지는 실제 제품 혹은 firmware download에 초점을 맞춘다. 
 * 이 책에서는 물리적 장치 내의 binary code에 GPL code가 있는지 확인한 후, 있을 경우 compliance 여부를 확인하기 위한 조치를 취하는 과정을 설명한다. 
+
 # Compliance Requirements
 GPL은 몇가지 중요한 요구사항을 갖는다. 
 1. 하나는 배포된 binary 또는 source code와 함께 license 사본을 제공하는 것이다. 
