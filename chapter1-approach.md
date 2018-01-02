@@ -40,4 +40,44 @@ GPL compliance 요구사항에 따른 compliance 목표는 다음과 같다.
 * rebuild를 수행한 후, rebuild된 binary file과 원래의 binary은 정확하게 일치한다. 
 
 ### 실제 상황
-* source code는 종종 완전 (complete and corresponding)하지 않다. binary를 rebuild할 때, 원본과 비교하여 size가 다르거나, 완전하 다른 version이다. 이는 GPL compliance를 보장하려고 할때 직면하는 가장 중요한 과제이다. 
+* source code는 종종 완전 (complete and corresponding)하지 않다. rebuild한 binary가 원본 대비 size가 다르거나, 완전하 다른 version이기도한다. 이는 GPL compliance를 보장하려고 할때 직면하는 가장 중요한 과제이다. 
+
+# Toolbox
+도전 과제가 명확해졌으니, 이제 일을 해내기 위한 Tool에 대해 이야기하자. 아래에서 설명하는 Tool을 이용할 수 있으면, 이 가이드에 포함된 모든 것을 할 수 있다. 따라서, GPL compliance engineering 문제의 대부분을 해결할 수 있다. 
+
+## Default Tools
+open source compliance engineer를 위한 기본 tool은 Linux이다. Fedora, CentOS, openSUSE, Debian 또는 Ubuntu와 같은 표준 Linux 배포판을 다운로드, 설치 및 설정해야한다. 이러한 배포판은 모두 우리 작업의 주요 역할을하는 기본 도구가 미리 설치되어 있다.(예: file, readelf, find, xargs, grep, dd, modinfo)
+
+다음 위치에서 free installation을 받을 수 있다.
+* Fedora : https://getfedora.org/
+* openSUSE : http://opensuse.org/
+* Debian : https://www.debian.org/
+* Ubuntu : https://www.ubuntu.com/
+* CentOS : https://www.centos.org/
+
+compliance engineering을 위한 Armijn Hemel의 기본 installation은 Fedora이다. 그러나, 배포판을 선택할때는 engineer가 익숙한 것이 낫다. 
+
+## Binary Analysis
+Binary의 분석에 도움이 되는 특정 tool들이 있다. 우리는 주로 Binary Analysis Tool (BAT)을 사용하지만, 편한것을 선택하여 사용하면 된다. 
+
+### Binary Analysis Tool (BAT)
+Binary Analysis Tool을 사용하면 binary code를 들여다보고 compliance 문제를 쉽게 볼 수 있게 하여 FOSS를 배포 할 때 불확실성을 줄일 수 있다. 
+BAT는 
+* 30가지 종류 이상의 압축 파일, file system 및 media file을 열 수 있다; 
+* Linux kernel과 BusyBox 문제를 찾을 수 있다;
+* 동적 link된 library를 식별할 수 있다;
+* source code로부터 추출한 정보를 갖고 있는 database를 이용하여 임의의 ELF, Android Dalvic, Java class file을 scan하고, 그 안에 어떤 software가 있는지 찾을 수 있다. 
+
+BAT는 Apache license가 적용되어 누구든지 무료로 사용, 공부 및 개선 할 수 있다. 
+* BAT download : https://github.com/armijnhemel/binaryanalysis
+* BAT user guide : https://github.com/armijnhemel/binaryanalysis/blob/master/doc/bat-manual.pdf
+
+### binwalk
+firmware를 분석하기 위한 또하나의 tool은 binwalk 이다. firmware image를 분석, reverse engineering 하는데 사용하기 쉽다. 
+* binwalk download: https://github.com/devttys0/binwalk
+* binwalk user guide: https://github.com/devttys0/binwalk/wiki
+
+## Source Code Analysis
+binary code와 물리적 디바이스의 배포를 어떻게 다루는지에 대해 집중하지만, 이것이 source code를 다루는 tool을 사용하지 않는다는 의미는 아니다. 실제 모든 우수한 compliance engineer는 source code license를 확인하는데 도움이 되는 tool을 하나 이상 보유하고 있다. 시작하기에 좋은 것은  일반적으로 FOSSology이다. 이는 무료 license scanner로써 source code archive를 검사하고 어떤 license가 있는지 알게해준다. 
+
+### FOSSology
