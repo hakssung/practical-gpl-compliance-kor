@@ -198,13 +198,20 @@ build 환경이 원래 환경과 다르면 (다른 compiler를 사용하거나, 
 
 
 ### 6.2.5 Supplier/Client Roles
+* 당신이 client에게 build 환경을 제공해야 하는 supplier라면, 최대한 자세하게 설명해야한다. 
+* 당신이 build 환경 정보를 필요로하는 client라면, supplier에게 최대한 자세하게 요청해야 한다. 
 
-
-### 6.2.6 Rebuild Instructions
+### 6.2.6 Rebuild 가이드
+build 가이드는 binary를 rebuild하는 정확한 단계를 명확하게 설명해야 한다. 여기에는 다음이 포함된다. 
+* binary 또는 firmware를 rebuild하는데 필요한 정확한 command
+* 예상되는 결과 (예: rebuild후 binary를 찾을 수 있는 위치)
+이상적인 상황이라면, 가이드를 임의의 engineer에게 주었을때, 아무런 문제 없이 거의 완벽한 rebuild를 수행할 수 있어야 한다. 
 
 ### 6.2.7 Verifying the Instructions
+rebuild 가이드는 test를 거쳐 완벽하게 되야 한다. clean한 system에서 test가 수행되는 것이 가장 좋다. rebuild 가이드에 작성되지 않은 system 수정 사항이 자주 존재할 수 있기 때문이다. project에 대해 지식이 없는 다른 engineer에게 rebuild를 수행해보게 하고, 발생한 모든 문제점을 문서화하라.
 
 ### 6.2.8 Verifying the Results
+rebuild 후에는 결과를 확인해야 한다. 
 
 #### 6.2.8.1 The Checksum of the Binaries
 
