@@ -252,13 +252,30 @@ Rebuild된 binary의 file 크기는 original binary와 매우 비슷해야한다
 동일하지 않은 부분이 단지 timestamp와 path name이라면 두 binary는 실제로 동일하다고 거의 볼 수 있다. 
 
 ## 6.3 Finding Incorrectly Licensed Code
+Open source licensed program을 수정하면서 license가 올바르게 부여되지 않을 수 있다. 한가지 역사적인 예는 chipset 제조사에 의해 수정이된 Linux kernel에 license 선언문이 누락되거나 또는 GPL과 호환되지 않는 license 선언문을 포함하는 경우이다. chipset 제조사가 추가한 Linux kernel driver code를 relicensing하는 것과 관련한 enforcement case가 있었다. 이러한 상황을 피하려면 다음 단계를 수행해야 한다: 
+
+1. 잘못 license된 file을 찾으라. 
+2. 누가 잘못 license된 file을 제공했는지 확인하라. 
+3. 해당 file이 실제로 필요한지 확인하라. 
+4. 허용되는 license하의 version을 찾으라. 
+5. license를 변경할 수 있는 permission을 구하라. 
+6. software를 재작성하라. 
  
-### 6.3.1 Finding Incorrectly Licensed Files
+### 6.3.1 잘못 license된 file을 찾으라
+License scanner를 사용하면 source code file의 license를 찾을 수 있다. 많은 license scanner가 있으며, 이 중 일부는 proprietary이고(예: Black Duck Protex, Palamida, Whitesource, Protecode, FOSSID, FOSSA), 다른 것들은 open source이다 (FOSSology, Scancode). license scanning은 올바르게 수행하기가 어렵고, 비표준 license header를 사용하거나, license text가 전혀 없는 source file도 많기 때문에 어떤 license scanner도 perfect job을 수행하지는 못한다. 
 
-### 6.3.2 Finding Who Introduced Incorrectly Licensed Files
+직접 작성한 code의 경우, license scanner가 license를 쉽게 식별하게 할 수 있는 방법이 있다. 한가지 예는 SPDX short identifier를 사용하는 것이다. SPDX는 package content를 설명하는 간단하고 표준화된 방법이고 license 정보 관리를 위해 업계 전반에 적용되고 있다. SPDX에 대한 자세한 내용은 https://spdx.org/에서 확인할 수 있다. 
 
-### 6.3.3 Finding Out If Files Are Actually Needed
+### 6.3.2 누가 잘못 license된 file을 제공했는지 확인하라
+잘못 license된 file을 발견한 후에는 누가 그것을 제공했는지를 이해하는 것이 중요하다. 이는 보통 두가지 원인 중 하나로 귀결된다.
 
-### 6.3.4 Finding a Version of a Driver Under an Acceptable License
+1. Upstream project
+2. ODM / Chipset 제조사
 
-### 6.3.5 Seeking Permission to Change the Licenses
+만약 당신이 open source code가 올바른 license 선언문이 없는 상황을 확인하여 upstream project에 이를 알린다면, 그들은 감사해할 것이다. 
+
+### 6.3.3 해당 file이 실제로 필요한지 확인하라
+
+### 6.3.4 허용되는 license하의 version을 찾으라
+
+### 6.3.5 license를 변경할 수 있는 permission을 구하라
