@@ -216,12 +216,40 @@ rebuild 후에는 결과를 확인해야 한다. 이전에 build된 것으로 �
 2. binary 내용
 
 #### 6.2.8.1 The Checksum of the Binaries
+Rebuild된 file이 original binary와 동일한 hash를 갖는 경우 file은 동일한 것이다. 이를 위한 도구로 MD5 hash의 경우 "md5sum", SHA256 hash의 경우 "sha256sum"이 있다. 다음 명령은 두개의 binary에 대해 hash를 계산하고 결과를 출력한다. 
+
+`$ md5sum /path/to/original/binary /path/to/new/binary`
+
+`$ sha256sum /path/to/original/binary /path/to/new/binary`
+
+이러한 명령어는 firmware내 개별 binary(예: "smbd" 또는 "iptables")에 대해 실행하는 것이 좋으며, build된 전체 firmware에 대해서는 실행하지 않는 것이 좋다. 이는 firmware의 checksum이 결코 같지 않을 수 있기 때문이다. BusyBox나 Linux kernel과 같은 일부 binary는 매번 다른 checksum을 반환한다. 이는 기본적으로 내부에 timestamp가 포함되어 있기 때문이다. 
 
 #### 6.2.8.2 The Content of the Binaries
 
-##### 6.2.8.2.1 Checking the File Size
+많은 경우, Original binary와 rebuild된 binary의 checksum이 동일하지 않다. 이는 source code file의 path와 timestamp가 포함되어 있기 때문이다. 환경을 신중하게 설정하더라도 각 build마다 달라질 수 있다. 하지만, 다음 단계를 통해 rebuild된 binary가 original binary에 충분히 비슷한지를 확인할 수 있다. 
 
-##### 6.2.8.2.2 Comparing the Contents of the File
+1. File 크기 확인
+2. File 내용 비교
+
+##### 6.2.8.2.1 File 크기 확인
+Rebuild된 binary의 file 크기는 original binary와 매우 비슷해야한다. 크게 차이가 나는 경우, 먼저 하나의 binary만 "stripped"(debugging symbol 제거)된 것인지 확인하라. 만약 그렇다면, "strip" 명령을 사용하여 다른 binary도 제거한다. (이 tool은 toolchain에 포함되어 있다.) 여전히 file size가 차이난다면, 두 binary는 같지 않을 가능성이 크다. 
+
+##### 6.2.8.2.2 File 내용 비교
+"strings" 명령은 binary로부터 사람이 읽을 수 있는 문자열을 추출하는데 사용할 수 있다. 다음의 간단한 3단계 process를 통해 file의 내용을 비교할 수 있다. 
+
+1. binary의 rebuild
+2. "strings"를 이용하여 내용 추출
+3. 결과를 original binary와 비교
+
+다음 command가 file의 내용을 추출하게 해준다. 
+
+`strings /path/to/old/binary > /tmp/strings.old`
+
+`$ strings /path/to/new/binary > /tmp/strings.new`
+
+`$ diff -u /tmp/strings.old /tmp/strings.new | less`
+
+동일하지 않은 부분이 단지 timestamp와 path name이라면 두 binary는 실제로 동일하다고 거의 볼 수 있다. 
 
 ## 6.3 Finding Incorrectly Licensed Code
  
