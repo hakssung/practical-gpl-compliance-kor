@@ -243,7 +243,7 @@ Rebuild된 binary의 file 크기는 original binary와 매우 비슷해야한다
 
 다음 command가 file의 내용을 추출하게 해준다. 
 
-`strings /path/to/old/binary > /tmp/strings.old`
+`$strings /path/to/old/binary > /tmp/strings.old`
 
 `$ strings /path/to/new/binary > /tmp/strings.new`
 
