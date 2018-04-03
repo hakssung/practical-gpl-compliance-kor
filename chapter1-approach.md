@@ -272,7 +272,9 @@ License scanner를 사용하면 source code file의 license를 찾을 수 있다
 1. Upstream project
 2. ODM / Chipset 제조사
 
-만약 당신이 open source code가 올바른 license 선언문이 없는 상황을 확인하여 upstream project에 이를 알린다면, 그들은 감사해할 것이다. 
+만약 당신이 open source code가 올바른 license 선언문이 없는 상황을 확인하여 upstream project에 이를 알린다면, 그들은 감사해할 것이다. Source에서 issue를 고치는 것은 모두에게 보다 나은 정보를 제공한다. Linux kernel의 경우 정확한 license 정보가 없는 file이 많이 있음에 주의하라. 그러나, 수년동안 Linux kernel에 존재하는 기존의 file은 문제로 간주되지 않는다. 알려진 file을 신속하게 filtering하는 방법은 https://lwn.net/Articles/552758에 설명되어 있다. 
+
+때때로 회사는 "trusted" upstream project 목록을 가지고 있다. 그들은 그 project로부터 가져온 모든 code는 더 이상의 검토 없이 사용할 수 있다고 간주한다. "trusted" project는 무엇이며, 그 이유는 무엇인지에 대한 결정은 사람 또는 조직마다 달라질 수 있다. 예를 든다면, kernel.org에서 직접 얻은 Linux kernel은 신뢰할 수 있지만, GitHub의 임의 kernel fork는 trust할 수 없다는 것이 일반적이다. 
 
 ### 6.3.3 해당 file이 실제로 필요한지 확인하라
 
