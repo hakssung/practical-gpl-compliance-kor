@@ -1,7 +1,8 @@
 # 1 Context
 * 이 책에서는 GPL-2.0에 초점을 맞춘다. 
-* 대부분의 compliance work은 시장에 보내지는 물리적 제품 혹은 firmware download에 초점을 맞춘다. 
+* 대부분의 compliance work은 시장에 배포하는 물리적 제품 혹은 download가능한 firmware에 초첨을 맞춘다. 
 * 이 책에서는 물리적 device 내의 binary code에 GPL code가 있는지 확인한 후, 있을 경우 compliance 여부를 확인하기 위한 조치를 취하는 과정을 설명한다. 
+
 # 2 Compliance Requirements
 GPL은 몇가지 중요한 요구사항을 갖는다. 
 1. 하나는 배포된 binary 또는 source code와 함께 license 사본을 제공하는 것이다. 
@@ -10,7 +11,7 @@ GPL은 몇가지 중요한 요구사항을 갖는다.
 GPL은 source code access 요구 사항을 준수하는 두가지 방법을 설명한다. 
 1. "완전한 source code (complete coressponding source code)"를 제품에 동봉한다.(section 3a) 
 2. "완전한 source code (complete coressponding source code)"를 제공하겠다는 서면 약정서 (written offer)를 포함시킨다. (section 3b)
-* 이 두가지 방법은 source code가 전달되는 방법적인 부분은 다르지만, 완전한 source code (omplete coressponding source code)가 전달되어야 한다는 점은 다르지 않다. 
+* 이 두가지 방법은 source code가 전달되는 방법적인 부분은 다르지만, 완전한 source code (omplete coressponding source code)가 전달되어야 한다는 점에서 동일하다. 
 
 # 3 Compliance Goals
 GPL compliance 요구사항에 따른 compliance 목표는 다음과 같다. 
@@ -40,7 +41,7 @@ GPL compliance 요구사항에 따른 compliance 목표는 다음과 같다.
 * rebuild를 수행한 후, rebuild된 binary file과 원래의 binary은 정확하게 일치한다. 
 
 ### 3.2.3 실제 상황
-* source code는 종종 완전 (complete and corresponding)하지 않다. rebuild한 binary가 원본 대비 size가 다르거나, 완전하 다른 version이기도한다. 이는 GPL compliance를 보장하려고 할때 직면하는 가장 중요한 과제이다. 
+* source code는 종종 완전(complete and corresponding)하지 않다. rebuild한 binary가 원본 대비 size가 다르거나, 완전하 다른 version이기도하다. 이는 GPL compliance를 보장하려고 할때 직면하는 가장 중요한 과제이다. 
 
 # 4 Toolbox
 도전 과제가 명확해졌으니, 이제 일을 해내기 위한 Tool에 대해 이야기하자. 아래에서 설명하는 Tool을 이용할 수 있으면, 이 가이드에 포함된 모든 것을 할 수 있다. 따라서, GPL compliance engineering 문제의 대부분을 해결할 수 있다. 
@@ -78,7 +79,7 @@ firmware를 분석하기 위한 또하나의 tool은 binwalk 이다. firmware im
 * binwalk user guide: https://github.com/devttys0/binwalk/wiki
 
 ## 4.3 Source Code Analysis
-binary code와 물리적 디바이스의 배포를 어떻게 다루는지에 대해 집중하지만, 이것이 source code를 다루는 tool을 사용하지 않는다는 의미는 아니다. 실제 모든 우수한 compliance engineer는 source code license를 확인하는데 도움이 되는 tool을 하나 이상 보유하고 있다. 시작하기에 좋은 것은  일반적으로 FOSSology이다. 이는 무료 license scanner로써 source code archive를 검사하고 어떤 license가 있는지 알게해준다. 
+binary code와 물리적 디바이스의 배포를 어떻게 다루는지에 대해 집중하고 있지만, 이것이 source code를 다루는 tool을 사용하지 않는다는 의미는 아니다. 실제 모든 우수한 compliance engineer는 source code license를 확인하는데 도움이 되는 tool을 하나 이상 보유하고 있다. 일반적으로 처음 시작하기에 좋은 tool은 FOSSology이다. 이는 무료 license scanner로써 source code archive를 검사하고 어떤 license가 있는지 알게해준다. 
 
 ### 4.3.1 FOSSology
 FOSSology (https://www.fossology.org)는 compliance software system이자 toolkit이다.
@@ -113,14 +114,14 @@ Binary 분석은 여러가지 방법과 tool을 사용하여 수행할 수 있�
 ### 5.2.3 Advanced Methods
 난독화를 극복하기위한 Advanced Method에는 실행중인 장치에 cable을 연결하여 code를 가져오거나 network를 통해 침입하는 방법 등이 있을 수 있다. 이러한 기술들은 이 책에서는 다루지 않는다. 
 
-# 6 Source Code 분석과 Rebuild
+# 6 (완전한 (“complete and corresponding”) 공개를 위한) Source Code 분석과 Rebuild
 source code archive를 검사하여 다음 작업을 수행해야한다.
 1. source code archive에서 문제가 될 수 있는 binary를 찾는다.
 2. source code rebuild를 수행하여 original binary와 비교한다.
 3. 옳지 않게 license된 code를 찾는다.
 
-## 6.1 문제가 될 가능성이 있는 binary 찾기
-chipset 제조업체 및 ODM (Original Design Manufacturer)의 source code archive에는 종종 source code 외의 것이 포함되어 있다. 당신은 이 achive에서 다음 사항들을 자주 찾을 것이다. 
+## 6.1 문제가 될 수 있는 binary 찾기
+chipset 제조업체 및 ODM (Original Design Manufacturer)의 source code archive에는 종종 source code 외의 것이 포함되어 있다. 
 * 이전 build에서 생성된 objece file
 * binary 형식의 "out of tree" linux kernel module
 * root file system과 같은 이전 build에서 생성된 library / executable
@@ -135,14 +136,14 @@ xargs --null fle > /path/to/result/fle`
 
 여기서 다음 file을 찾아야 한다. 
 * ELF file : architecture에 주의하라. ARM인 device에 예기치않게 MIPS같은 architecture의 executable이 포함될 수 있다. 이때는 이 binary를 제거해야한다. 
-* PE32 and PE32+ fles : 이것들은 Windows binary이며, embedded Linux system과 관련된 source code release에는 보통 존재하지 않는다. ActiveX plugin과 관련된 경우는 예외이다. 
+* PE32 and PE32+ fles : 이것들은 Windows binary이며, embedded Linux system과 관련된 source code release에는 보통 존재하지 않는다. (ActiveX plugin과 관련된 경우는 예외)
 * Linux kernel boot images : 만약 이러한 file이 압축 file이나 U-Boot boot image의 일부로 존재하는 경우, 거의 항상 제거할 수 있다. (왜냐하면 이것들은 거의 확실하게 다른 configuration file을 이용하여 compile된 것이기 때문이다.) 이들을 포함시키는 것은 target device와 관계없는 licensing 요구사항이 잠재적으로 포함될 수 있는 것이다. 이러한 image들을 build process에 필요하다는 이유로 제거할 수 없다는 것은 source code가 완전하지 않음을 나타낸다. 찾기 위한 쉬운 방법은 "vmlinux", "vmlinuz" 또는 유사한 file을 search하는 것이다. 
 * MacOS X fles : Windows file과 마찬가지로 embedded Linux system의 source code release에는 포함되지 않는다. 단, device가 Apple Mac OS X system에 제공할 software와 관련이 있는 경우는 예외이다. 찾기 위한 쉬운 방법은 "Mach-O"로 search하는 것이다. 이러한 file은 Google에서 배포하는 Android의 prebuilt toolchain source에 종종 존재한다. 
 
 ### 6.1.1 Object Files
-object file (확장자 ".o")은 source code release에서 자주 발견된다. 이에 해당하는 ".c" 또는 ".cc" 파일이 존재한다면, "make clean"을 사용하여 object file을 제거하라. 
+object file (확장자 ".o")은 source code release에서 자주 발견된다. 이에 해당하는 ".c" 또는 ".cc" 파일이 존재한다면, "make clean"을 사용하여 object file을 제거하라. 만약, 해당하는 source code가 없다면 compliance 문제가 있을 수 있다. 
 
-만약, 해당하는 source code가 없다면 compliance 문제가 있을 수 있다. build process를 완전하게 하기 위해 object file이 필요하여 제거해서는 안되는 상황이 있을 수 있다. 한가지 예로는 LGPL licensed code와 정적 link하고 relink시 필요한 proprietary program의 object file이다.
+build process를 완전하게 하기 위해 object file이 필요하여 제거해서는 안되는 상황이 있을 수 있다. 한가지 예로는 LGPL licensed code와 정적 link하고 relink시 필요한 proprietary program의 object file이다.
 
 ### 6.1.2 “Out of tree” Linux Kernel Modules
 일부 device는 default Linux kernel에서 지원하지 않는 component를 포함한다. 이들을 올바르게 작동하기 위해는 extra driver가 필요하며, 그러한 driver는 종종 Linux kernel module로 구현된다. 몇가지 예로는 WiFi driver, camera driver, 또는 firewalling module들이 있다. 이러한 extension은 두가지 공통적인 문제를 제공한다. 
@@ -157,7 +158,6 @@ source code tree에는 종종 library 또는 executable binary가 있다. 이는
 이러한 binary들이 open source licensed code를 포함하고 배포를 위한 source code가 match되지 않는다면 제거해야 한다. 잘못된 version number, 다른 configuration, 또는 source code의 변경은 의도하지 않은 violation을 유발할 수 있다. 
 
 이러한 문제를 고려할때의 중요한 질문은: "source code가 binary code에 대해 'complete and corresponding'하고, extra binary 또는 source code element는 없는가?" 이다. 
-
 
 ### 6.1.4 File System Images
 전체 file system image가 source code tree에 포함되는 경우도 있다. 예를 들어, 많은 Android source code tree가 "boot.img", "system.img"같은 file system image를 포함하고 있다. 이 file에 coressponding source code 없이 open source가 포함되어 있다면 이는 원치 않는 위반이 발생할 수 있다.
@@ -179,7 +179,7 @@ rebuild를 위해 다음 정보가 중요하다.
 ### 6.2.3 Goals
 rebuild는 두가지 주요 목표가 있다. 
 1. build가 동작하는지 확인
-2. 결과 확인
+2. 결과 확인 (original binary와 동일한지)
 
 ### 6.2.4 build 환경 설명
 rebuild된 binary와 원래의 binary를 올바르게 비교하기 위해서는 build 환경을 최대한 정확하게 설명해야 한다. 
@@ -195,7 +195,6 @@ rebuild된 binary와 원래의 binary를 올바르게 비교하기 위해서는 
   * 필요한 환경 변수 설정
 
 build 환경이 원래 환경과 다르면 (다른 compiler를 사용하거나, 혹은 compiler option이 다른것 조차도) 생성되는 code에 큰 영향을 줄 수 있다. 이는 binary file을 비교하여 source code가 원본 binary와 "complete and corresponding"하는지 확인하는 것을 어렵게 한다. 
-
 
 ### 6.2.5 Supplier/Client Roles
 * 당신이 client에게 build 환경을 제공해야 하는 supplier라면, 최대한 자세하게 설명해야한다. 
@@ -243,7 +242,7 @@ Rebuild된 binary의 file 크기는 original binary와 매우 비슷해야한다
 
 다음 command가 file의 내용을 추출하게 해준다. 
 
-`$strings /path/to/old/binary > /tmp/strings.old`
+`$ strings /path/to/old/binary > /tmp/strings.old`
 
 `$ strings /path/to/new/binary > /tmp/strings.new`
 
@@ -252,7 +251,7 @@ Rebuild된 binary의 file 크기는 original binary와 매우 비슷해야한다
 동일하지 않은 부분이 단지 timestamp와 path name이라면 두 binary는 실제로 동일하다고 거의 볼 수 있다. 
 
 ## 6.3 Finding Incorrectly Licensed Code
-Open source licensed program을 수정하면서 license가 올바르게 부여되지 않을 수 있다. 한가지 역사적인 예는 chipset 제조사에 의해 수정이된 Linux kernel에 license 선언문이 누락되거나 또는 GPL과 호환되지 않는 license 선언문을 포함하는 경우이다. chipset 제조사가 추가한 Linux kernel driver code를 relicensing하는 것과 관련한 enforcement case가 있었다. 이러한 상황을 피하려면 다음 단계를 수행해야 한다: 
+Open source licensed program을 수정하면서 license가 올바르게 부여되지 않을 수 있다. 한가지 고전적인 예는 chipset 제조사에 의해 수정이된 Linux kernel에 license 선언문이 누락되거나 또는 GPL과 호환되지 않는 license 선언문을 포함하는 경우이다. chipset 제조사가 추가한 Linux kernel driver code를 relicensing하는 것과 관련한 enforcement case가 있었다. 이러한 상황을 피하려면 다음 단계를 수행해야 한다: 
 
 1. 잘못 license된 file을 찾으라. 
 2. 누가 잘못 license된 file을 제공했는지 확인하라. 
