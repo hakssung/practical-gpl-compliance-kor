@@ -258,7 +258,7 @@ Open source licensed program을 수정하면서 license가 올바르게 부여�
 2. 누가 잘못 license된 file을 제공했는지 확인하라. 
 3. 해당 file이 실제로 필요한지 확인하라. 
 4. 허용되는 license하의 version을 찾으라. 
-5. license를 변경할 수 있는 permission을 구하라. 
+5. license 변경 권한을 요청하라.
 6. software를 재작성하라. 
  
 ### 6.3.1 잘못 license된 file을 찾으라
@@ -277,7 +277,13 @@ License scanner를 사용하면 source code file의 license를 찾을 수 있다
 때때로 회사는 "trusted" upstream project 목록을 가지고 있다. 그들은 그 project로부터 가져온 모든 code는 더 이상의 검토 없이 사용할 수 있다고 간주한다. "trusted" project는 무엇이며, 그 이유는 무엇인지에 대한 결정은 사람 또는 조직마다 달라질 수 있다. 예를 든다면, kernel.org에서 직접 얻은 Linux kernel은 신뢰할 수 있지만, GitHub의 임의 kernel fork는 trust할 수 없다는 것이 일반적이다. 
 
 ### 6.3.3 해당 file이 실제로 필요한지 확인하라
+문제가 되는 file이 upstream project에 의해 제공되는 것이 아닌 경우, file을 제거하는 것이 좋다. 예를 들어, Microsoft Windows driver용 file이 Linux kernel source code tree에 존재한다면, 안전하게 제거할 수 있다. 
+
+마찬가지로 최종 binary 또는 build process에 사용되지 않는 파일이라면 안전하게 제거할 수 있다. 안전하게 제거할 수 있는 file인지 확인하는 한 방법은 file을 source code tree에서 제거하고 binary를 다시 build하는 것이다. (이전 build의 build 산출물을 완전히 제거하고, full build하는 방식으로.) 결과 binary가 동일하면 (또는 충분히 유사하면) file을 안전하게 제거할 수 있는 것이다.
 
 ### 6.3.4 허용되는 license하의 version을 찾으라
+과거 Embedded Linux 산업에서는 (특히 driver) 잘못 license된 source code file과 관련하여 많은 실수가 있었다. 일부 vendor는 허용 가능한 license하의 새로운 driver version으로 이미 relicense했지만, ODM들은 update에 대해 알지 못하거나 새로운 driver가 자신들의 component와 제대로 동작하는지 test하는 것을 원하지 않기 때문에 여전히 old driver version을 제공하고 있다. 
 
-### 6.3.5 license를 변경할 수 있는 permission을 구하라
+### 6.3.5 License 변경 권한을 요청하라
+License를 변경하는 것은 일반적으로 가장 어려운 solution이지만 때로는 software를 재작성하는 것 외의 유일한 option일 수 있다. file이 사용되었지만 올바른 license가 없는 경우, copyright owner에게 file에 대해 relicense를 요청해야 한다. 일부 copyright owner는 해주지 않을 수도 있지만, 다른 제조사나 개발자들은 반대하지 않을 수도 있다.
+
